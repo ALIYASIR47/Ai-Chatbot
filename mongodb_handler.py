@@ -27,10 +27,10 @@ class MongoDBHandler:
             self.client.server_info()
             self.db = self.client[db_name]
             self.knowledge_collection = self.db["knowledge_base"]
-            print(f"✓ Connected to MongoDB: {db_name}")
+            print(f"[OK] Connected to MongoDB: {db_name}")
         except (ConnectionFailure, ServerSelectionTimeoutError) as e:
-            print(f"⚠️  MongoDB connection failed: {e}")
-            print("   Running in fallback mode without database")
+            print(f"[WARNING] MongoDB connection failed: {e}")
+            print("Running in fallback mode without database")
             self.client = None
             self.db = None
             self.knowledge_collection = None
@@ -42,7 +42,7 @@ class MongoDBHandler:
     def load_knowledge_from_file(self, file_path="knowledge_base.json"):
         """Load knowledge base from JSON file into MongoDB"""
         if not self.is_connected():
-            print("⚠️  Cannot load to MongoDB: Not connected")
+            print("[WARNING] Cannot load to MongoDB: Not connected")
             return False
 
         try:
@@ -127,11 +127,11 @@ class MongoDBHandler:
                 })
 
             count = self.knowledge_collection.count_documents({})
-            print(f"✓ Loaded {count} knowledge base entries into MongoDB")
+            print(f"[OK] Loaded {count} knowledge base entries into MongoDB")
             return True
 
         except Exception as e:
-            print(f"⚠️  Error loading knowledge base: {e}")
+            print(f"[ERROR] Error loading knowledge base: {e}")
             return False
 
     def search_knowledge(self, query, limit=5):
@@ -216,4 +216,4 @@ class MongoDBHandler:
         """Close MongoDB connection"""
         if self.client:
             self.client.close()
-            print("✓ MongoDB connection closed")
+            print("[OK] MongoDB connection closed")

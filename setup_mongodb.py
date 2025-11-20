@@ -18,7 +18,7 @@ def setup_knowledge_base():
 
     if not mongo.is_connected():
         print()
-        print("⚠️  MongoDB is not running!")
+        print("[WARNING] MongoDB is not running!")
         print()
         print("Please ensure MongoDB is installed and running:")
         print("  - Download: https://www.mongodb.com/try/download/community")
@@ -34,21 +34,21 @@ def setup_knowledge_base():
     if success:
         print()
         print("=" * 60)
-        print("✓ Setup Complete!")
+        print("[SUCCESS] Setup Complete!")
         print("=" * 60)
         print()
         print("Your chatbot now has access to:")
-        print("  • Company information")
-        print("  • Services and features")
-        print("  • Pricing plans")
-        print("  • FAQs")
-        print("  • Trading sessions")
-        print("  • And more!")
+        print("  * Company information")
+        print("  * Services and features")
+        print("  * Pricing plans")
+        print("  * FAQs")
+        print("  * Trading sessions")
+        print("  * And more!")
         print()
         print("You can now run: python app.py")
     else:
         print()
-        print("⚠️  Setup failed. Please check the error messages above.")
+        print("[ERROR] Setup failed. Please check the error messages above.")
 
     mongo.close()
     return success
