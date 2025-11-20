@@ -5,6 +5,15 @@ let isFirstMessage = true;
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadHistory('today');
+
+    // Add click handlers to example questions
+    document.querySelectorAll('.example-question').forEach(question => {
+        question.addEventListener('click', function() {
+            const text = this.textContent.replace(/['"]/g, ''); // Remove quotes
+            document.getElementById('user-input').value = text;
+            sendMessage();
+        });
+    });
 });
 
 // Toggle sidebar (mobile)
@@ -151,14 +160,16 @@ function escapeHtml(text) {
 }
 
 // Filter history
-function filterHistory(filter) {
+function filterHistory(filter, btnElement) {
     currentFilter = filter;
 
     // Update active button
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    event.target.classList.add('active');
+    if (btnElement) {
+        btnElement.classList.add('active');
+    }
 
     // Load filtered history
     loadHistory(filter);

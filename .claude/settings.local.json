@@ -12,7 +12,8 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(del nul 2)",
-      "Bash(NUL)"
+      "Bash(NUL)",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []

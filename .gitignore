@@ -32,6 +32,9 @@ config.py
 # Chat History (personal data)
 chat_history.json
 
+# MongoDB backups
+mongodb_backup/
+
 # IDE
 .vscode/
 .idea/

@@ -1,0 +1,249 @@
+{
+  "company": {
+    "name": "StansBooth",
+    "tagline": "Investing Made Easy with AI Trading Bot",
+    "description": "StansBooth AI trading bot turns volatility into opportunity using high-speed algorithmic trading for smarter and faster gains.",
+    "email": "Info@stansbooth.com",
+    "address": "30 N GOULD St Ste R Sheridan WY 82801",
+    "copyright": "® 2025 Stansbooth All Rights Reserved"
+  },
+  "social_media": {
+    "linkedin": "https://www.linkedin.com/company/stansbooth",
+    "youtube": "https://www.youtube.com/@stansbooth",
+    "tiktok": "https://www.tiktok.com/@stansbooth",
+    "instagram": "https://www.instagram.com/stansbooth_789/#",
+    "facebook": "https://www.facebook.com/stanssbooth",
+    "twitter": "https://x.com/StansBooth"
+  },
+  "services": [
+    {
+      "name": "Algorithmic Trading",
+      "description": "Our algorithmic trading services use a set of instructions, codes, and algorithms to make trades automatically in Forex, crypto, and stocks. We support Meta Trader 5 (MT5) and TradingView by offering AI-made trading strategies, signals, and execution for smarter trading."
+    },
+    {
+      "name": "Copy Trading and Social Trading",
+      "description": "Copy the trades of top-performing traders instantly and proportionally without any experience. Our copy and social trading services let you earn passively, giving exposure to real strategies, all inside a trusted, results-driven community."
+    },
+    {
+      "name": "Education and Training",
+      "description": "Learn trading from scratch or sharpen your skills with the best algo trading courses, live webinars, and one-on-one mentoring. Our education and training service offers core trading essentials. From chart reading, market trends, technical analysis, risk management, and trading psychology, you can be an expert for confident trading."
+    },
+    {
+      "name": "Market Alerts and Signals",
+      "description": "We provide reliable buy/sell AI trading signals based on price action, technical indicators, and algorithmic strategies. The StansBooth AI bot gives you instant trading alerts for making wiser and profitable decisions fast to compete with the market at the right time."
+    },
+    {
+      "name": "Account and Portfolio Monitoring",
+      "description": "Your portfolio is thoroughly checked to make it aligned with crypto, Forex and stock trends. Our trading experts not only check your portfolio but manage the account as a whole for mitigating the risks, supporting profit, and professional management. Earn more without any stress."
+    },
+    {
+      "name": "Funds & Asset Management",
+      "description": "We assist you to grow your wealth with proven, strategic asset and fund management. StansBooth trading experts ensure all your trades are executed and handled effectively; you don't have to monitor markets yourself. Our performance fee model charges only when you receive the profit."
+    }
+  ],
+  "features": [
+    {
+      "name": "Instant Trade Signals",
+      "description": "Our AI trading bot delivers instant trade signals based on advanced algorithms that monitor volatility, volume shifts, and price trends. You enter and exit at the perfect moment with our best AI trading bot for beginners."
+    },
+    {
+      "name": "AI-Powered Market Analysis",
+      "description": "Get deep, real-time analysis of candlestick patterns, momentum shifts, and historical behavior, all powered by an AI bot. Decode complex charts in seconds, whether you are a beginner or a pro."
+    },
+    {
+      "name": "Portfolio Growth Tracking",
+      "description": "Track every move with visual dashboards showing cumulative gains to trade-by-trade performance. This is built for traders using an AI stock trading bot for free, helping you assess what's working and where to optimize."
+    },
+    {
+      "name": "Smart Trade Assistant",
+      "description": "Use it as your AI co-pilot with a single command bar to analyze charts, execute trades, or adjust strategy. Designed for anyone using bots for buying across various markets."
+    },
+    {
+      "name": "Unified Market Dashboard",
+      "description": "Get alerts and AI insights into portfolio performance and trade history all in one place. Our advanced dashboard simplifies your workflow, whether you are scaling multiple bots or exploring trading as a beginner."
+    }
+  ],
+  "pricing_plans": [
+    {
+      "name": "Starter Plan",
+      "description": "Perfect for learning and testing",
+      "monthly_price": 0,
+      "yearly_price": 0,
+      "profit_limit": "Up to $10",
+      "features": [
+        "Gold Data Access (Last 1 Year)",
+        "Community Forum Access",
+        "Email Support (48-hour response)"
+      ]
+    },
+    {
+      "name": "Professional Plan",
+      "description": "Get started with real trading",
+      "monthly_price": 25,
+      "yearly_price": 250,
+      "profit_limit": "Up to $100",
+      "roi": "300%",
+      "starting_capital": "From $25",
+      "trading_sessions": "Choose 1 Session (ASIA, LONDON, or NEWYORK)",
+      "features": [
+        "Trade 1 Selected Session (ASIA / LONDON / NEWYORK)",
+        "Fixed $10 Profit Target per Day",
+        "Protection: 6 SL per session",
+        "Phase Tracking Enabled",
+        "Email + Chat Support",
+        "UNLIMITED Daily Signals",
+        "90-95% Accuracy",
+        "MT5 Platform Connected",
+        "Standard Dashboard",
+        "Full Stats",
+        "Live Win Rate Tracking",
+        "Real-time Pips Counter"
+      ]
+    },
+    {
+      "name": "Business Plan",
+      "description": "Advanced tools for serious traders",
+      "monthly_price": 50,
+      "yearly_price": 500,
+      "profit_limit": "Up to $250",
+      "roi": "400%",
+      "starting_capital": "From $25",
+      "trading_sessions": "Choose 2 Sessions (ASIA, LONDON, NEWYORK)",
+      "features": [
+        "Trade Any 2 Sessions (ASIA, LONDON, NEWYORK)",
+        "Fixed $20 Profit Target per Day",
+        "Protection: 6 SL or 8 SL",
+        "Phase Tracking Enabled",
+        "Priority Chat Support",
+        "UNLIMITED Daily Signals",
+        "90-95% Accuracy",
+        "MT5 Platform Connected",
+        "Standard Dashboard",
+        "Full Stats",
+        "Live Win Rate Tracking",
+        "Real-time Pips Counter"
+      ]
+    },
+    {
+      "name": "Premium Plan",
+      "description": "Complete trading suite with priority support",
+      "monthly_price": 100,
+      "yearly_price": 1000,
+      "profit_limit": "Custom ($580 Target Example)",
+      "roi": "480%",
+      "starting_capital": "From $25",
+      "trading_sessions": "All 3 Sessions (ASIA, LONDON, NEWYORK)",
+      "features": [
+        "All 3 Trading Sessions Unlocked",
+        "Custom Profit Target (Daily)",
+        "Protection: 6 SL / 8 SL / 10 SL (Flexible)",
+        "Custom Stop-Loss Settings",
+        "Advanced Dashboard",
+        "Advanced Phase Tracking + Analytics",
+        "24/7 VIP Priority Support",
+        "Dedicated Account Manager",
+        "UNLIMITED Daily Signals",
+        "90-95% Accuracy",
+        "MT5 Platform Connected",
+        "Full Stats",
+        "Live Win Rate Tracking",
+        "Real-time Pips Counter",
+        "Custom Button Available"
+      ]
+    },
+    {
+      "name": "Enterprise Plan",
+      "description": "Tailored solutions for organizations",
+      "profit_limit": "Unlimited",
+      "features": [
+        "Everything in Premium Plan",
+        "Custom Bot Development",
+        "Bulk Data Licensing",
+        "Dedicated Account Manager",
+        "SLA Guarantees (99.9% uptime)",
+        "On-site Training Available"
+      ]
+    }
+  ],
+  "trading_sessions": [
+    {
+      "name": "ASIA Session",
+      "gmt": "12:00 AM - 09:00 AM",
+      "pkt": "5:00 AM - 02:00 PM"
+    },
+    {
+      "name": "LONDON Session",
+      "gmt": "8:00 AM - 05:00 PM",
+      "pkt": "1:00 PM - 10:00 PM"
+    },
+    {
+      "name": "NEWYORK Session",
+      "gmt": "1:00 PM - 05:00 PM",
+      "pkt": "6:00 PM - 03:00 AM"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do AI trading bots actually work?",
+      "answer": "Yes, they work effectively and efficiently to boost your profit. AI trading bots are built on strong data models and have tested trading strategies, giving real-time results. They manage all trading-related tasks, reducing emotional decisions, guesswork, and stress loss with algorithmic trading."
+    },
+    {
+      "question": "Is it legal to use AI bots for trading?",
+      "answer": "It is 100% legal to use AI trading bots in the majority of countries, including the U.S., U.K., and EU. Ensure you use bots on regulated platforms and comply with local financial regulations."
+    },
+    {
+      "question": "Is it possible to earn money using AI trading?",
+      "answer": "Absolutely, AI trading ensures money earning with advanced algorithmic trading strategies and AI bots. They reduce the worries of risks, analysis, and market research and provide a suite of automated trading systems. StansBooth is a leading AI bot for trading that ensures automated trading strategy to win more with less effort."
+    },
+    {
+      "question": "What is the most profitable trading bot?",
+      "answer": "StansBooth is the most trusted trading bot with AI support, ensuring maximum profitability and minimum risk. It is particularly designed for new traders, side hustlers, and new investors."
+    },
+    {
+      "question": "Can AI forecast the stock market?",
+      "answer": "You can get accurate and profitable forecasts when using the StansBooth AI trading bot. It deeply checks huge amounts of historical and real-time data to predict patterns, trends, and likely outcomes."
+    },
+    {
+      "question": "Is it possible to earn a living off a trading bot?",
+      "answer": "Yes, people earn their living through trading bots, depending on your capital, strategy, and expertise. For newbies, a trading AI bot is an excellent way to earn side income without much effort, being easier and more profitable than traditional trading."
+    },
+    {
+      "question": "How much do AI trading bots cost?",
+      "answer": "Pricing is diverse. Some bots demand monthly fees, others are a share of earnings, and some, like StansBooth, provide robust features with free AI trading software for beginners and low-budget traders."
+    },
+    {
+      "question": "Is there a free AI trading bot?",
+      "answer": "StansBooth is a free AI stock trading bot, made specially for trade lovers to make trading possible and profitable for everyone. It serves as a free-of-cost trading assistant for stress-free trading."
+    }
+  ],
+  "vision": "Our team of seasoned trading experts, with years of hands-on market experience, created StansBooth with a clear mission: to make trading accessible, automated, and profitable for everyone. After working closely with clients who struggled to find time for charts, signals, and constant analysis, our team realized that most people needed a smarter, hands-off solution. From professionals caught in 9–6 jobs to stay-at-home parents and those overwhelmed with daily routines, we set out to eliminate the complexity of trading. StansBooth was built as an all-in-one AI-powered trading platform that simplifies everything. No technical expertise, no daily monitoring, just a reliable system that trades for you while you focus on your career, family, or personal goals.",
+  "why_choose_stansbooth": [
+    {
+      "title": "Automated Trading",
+      "description": "Bots analyze market trends and execute trades instantly."
+    },
+    {
+      "title": "Innovation with Safety",
+      "description": "StansBooth promises you next-gen trading, smart algorithms, and ironclad protection as a premium trading system."
+    },
+    {
+      "title": "Integrated Dashboard",
+      "description": "All trading tools under one seamless interface. Access real-time signals, Strategy Builder, Copy Trading, and Portfolio Stats."
+    },
+    {
+      "title": "Instant Setup",
+      "description": "Sign up, activate the bot, and let it trade for you. No charts to read, no trading tactics to learn, and no experience required."
+    },
+    {
+      "title": "Grow With Knowledge",
+      "description": "Learn Trading - Master the art of trading with expert guidance tailored to your experience level and goals. Expert-Led Learning with courses, market breakdowns, webinars, one-on-one sessions, trading strategies guidance, daily chart and signals analysis, global market trends, and trading psychology."
+    }
+  ],
+  "blogs": [
+    {
+      "title": "Algorithmic Trading vs. Copy Trading – Which Suits You Best?",
+      "brief": "Are you stuck between algorithmic trading vs copy trading? Don't know which suits you best? Read on to get an idea about both of these trading methods.",
+      "link": "https://www.stansbooth.com/blogs/algorithmic-trading-vs-copy-trading-which-suits-you-best-junaid"
+    }
+  ]
+}

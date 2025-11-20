@@ -4,6 +4,7 @@ import google.generativeai as genai
 import os
 from datetime import datetime, timedelta
 from config import GEMINI_API_KEY
+from mongodb_handler import MongoDBHandler
 
 # ----------------- CONFIG -----------------
 # Load Gemini API key from config file
@@ -14,6 +15,32 @@ app = Flask(__name__)
 
 # Chat history file
 HISTORY_FILE = "chat_history.json"
+
+# Initialize MongoDB connection
+mongo_db = MongoDBHandler()
+
+# System prompt for StansBooth context
+SYSTEM_PROMPT = """You are a helpful AI assistant for StansBooth, an AI-powered trading bot platform.
+
+StansBooth provides automated algorithmic trading services for Forex, crypto, and stocks. Our mission is to make trading accessible, automated, and profitable for everyone - from professionals to beginners.
+
+Key Services:
+- Algorithmic Trading (MT5 & TradingView support)
+- Copy Trading & Social Trading
+- Education & Training
+- Market Alerts & AI Signals
+- Portfolio Monitoring
+- Funds & Asset Management
+
+When answering questions:
+1. Be professional, friendly, and helpful
+2. If asked about StansBooth services, pricing, or features, use the knowledge base information provided
+3. For general questions, provide helpful answers while maintaining StansBooth's professional tone
+4. Always encourage users to learn more about our services when relevant
+5. Mention that we offer a FREE Starter Plan for beginners
+
+Contact: Info@stansbooth.com | Website: stansbooth.com
+"""
 
 # ----------------- HELPER FUNCTIONS -----------------
 def load_chat_history():
@@ -41,11 +68,52 @@ def add_to_history(user_msg, bot_msg):
     })
     save_chat_history(history)
 
+def get_relevant_context(query):
+    """Get relevant context from MongoDB knowledge base"""
+    if not mongo_db.is_connected():
+        return ""
+
+    # Search knowledge base
+    results = mongo_db.search_knowledge(query, limit=3)
+
+    if not results:
+        return ""
+
+    # Build context string
+    context_parts = []
+    for result in results:
+        result_type = result.get("type", "")
+        data = result.get("data", {})
+
+        if result_type == "faq":
+            context_parts.append(f"Q: {data.get('question', '')}\nA: {data.get('answer', '')}")
+        elif result_type == "service":
+            context_parts.append(f"Service - {data.get('name', '')}: {data.get('description', '')}")
+        elif result_type == "feature":
+            context_parts.append(f"Feature - {data.get('name', '')}: {data.get('description', '')}")
+        elif result_type == "pricing_plan":
+            plan_name = data.get('name', '')
+            monthly = data.get('monthly_price', 'N/A')
+            yearly = data.get('yearly_price', 'N/A')
+            features = ', '.join(data.get('features', [])[:3])
+            context_parts.append(f"Plan - {plan_name}: ${monthly}/month, ${yearly}/year. Features: {features}...")
+
+    return "\n\n".join(context_parts)
+
 def ask_gemini(query):
     try:
+        # Get relevant context from knowledge base
+        context = get_relevant_context(query)
+
+        # Build the prompt with system instructions and context
+        if context:
+            full_prompt = f"{SYSTEM_PROMPT}\n\n--- Relevant Knowledge Base Information ---\n{context}\n\n--- User Question ---\n{query}\n\nPlease answer based on the knowledge base information provided above. If the information isn't sufficient, you can supplement with general knowledge while staying true to StansBooth's services."
+        else:
+            full_prompt = f"{SYSTEM_PROMPT}\n\n--- User Question ---\n{query}\n\nPlease provide a helpful answer while maintaining StansBooth's professional and friendly tone."
+
         # Use the latest stable Gemini model
         model_gemini = genai.GenerativeModel("gemini-2.5-flash")
-        response = model_gemini.generate_content(query)
+        response = model_gemini.generate_content(full_prompt)
         return response.text.strip()
     except Exception as e:
         return f"⚠️ Gemini API error: {str(e)}"
