@@ -28,6 +28,11 @@ env/
 # API Keys and Sensitive Data
 config.py
 .env
+.env.local
+.env.production
+*.key
+*.pem
+secrets/
 
 # Chat History (personal data)
 chat_history.json
