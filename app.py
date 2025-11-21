@@ -111,12 +111,39 @@ def ask_gemini(query):
         else:
             full_prompt = f"{SYSTEM_PROMPT}\n\n--- User Question ---\n{query}\n\nPlease provide a helpful answer while maintaining StansBooth's professional and friendly tone."
 
-        # Use the latest stable Gemini model
+        # Use the latest stable Gemini model with safety settings
         model_gemini = genai.GenerativeModel("gemini-2.5-flash")
-        response = model_gemini.generate_content(full_prompt)
+
+        # Configure safety settings to be more permissive for trading/financial content
+        safety_settings = {
+            "HARM_CATEGORY_DANGEROUS_CONTENT": "BLOCK_NONE",
+            "HARM_CATEGORY_HATE_SPEECH": "BLOCK_ONLY_HIGH",
+            "HARM_CATEGORY_HARASSMENT": "BLOCK_ONLY_HIGH",
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT": "BLOCK_ONLY_HIGH",
+        }
+
+        response = model_gemini.generate_content(
+            full_prompt,
+            safety_settings=safety_settings
+        )
+
+        # Check if response was blocked
+        if not response.parts:
+            # Check finish reason
+            if hasattr(response, 'prompt_feedback'):
+                return "I apologize, but I couldn't generate a response due to content filters. Please try rephrasing your question. If you're asking about StansBooth services, feel free to ask about pricing, features, or trading strategies."
+            return "I apologize, but I couldn't generate a response. Please try asking your question in a different way."
+
         return response.text.strip()
+
+    except AttributeError as e:
+        # Handle blocked response specifically
+        return "I apologize, but your question triggered content filters. If you're asking about StansBooth trading services, please rephrase and I'll be happy to help!"
     except Exception as e:
-        return f"⚠️ Gemini API error: {str(e)}"
+        error_msg = str(e)
+        if "finish_reason" in error_msg or "blocked" in error_msg.lower():
+            return "I couldn't process that request due to safety filters. Please rephrase your question about StansBooth services, and I'll be happy to assist!"
+        return f"I encountered an error: {error_msg}. Please try again or contact support at Info@stansbooth.com"
 
 # ----------------- ROUTES -----------------
 @app.route("/")
