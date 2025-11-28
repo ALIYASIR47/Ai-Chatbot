@@ -56,3 +56,6 @@ Thumbs.db
 
 # System files
 nul
+
+# Claude Code
+.claude/

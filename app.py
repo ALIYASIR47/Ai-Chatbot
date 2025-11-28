@@ -20,7 +20,7 @@ HISTORY_FILE = "chat_history.json"
 mongo_db = MongoDBHandler()
 
 # System prompt for StansBooth context
-SYSTEM_PROMPT = """You are a helpful AI assistant for StansBooth, an AI-powered trading bot platform.
+SYSTEM_PROMPT = """You are a strict AI assistant ONLY for StansBooth, an AI-powered trading bot platform.
 
 StansBooth provides automated algorithmic trading services for Forex, crypto, and stocks. Our mission is to make trading accessible, automated, and profitable for everyone - from professionals to beginners.
 
@@ -32,12 +32,12 @@ Key Services:
 - Portfolio Monitoring
 - Funds & Asset Management
 
-When answering questions:
-1. Be professional, friendly, and helpful
-2. If asked about StansBooth services, pricing, or features, use the knowledge base information provided
-3. For general questions, provide helpful answers while maintaining StansBooth's professional tone
-4. Always encourage users to learn more about our services when relevant
-5. Mention that we offer a FREE Starter Plan for beginners
+STRICT RULES:
+1. ONLY answer questions about StansBooth services, pricing, features, trading platforms, or related topics
+2. If the question is about coding, general knowledge, other companies, or unrelated topics, respond with: "I can only answer questions about StansBooth services. Please ask about our trading bots, pricing plans, or features."
+3. Refuse to answer questions about: programming, math problems, general knowledge, other websites, or anything not directly related to StansBooth
+4. Always use the knowledge base information when available
+5. Mention FREE Starter Plan when relevant
 
 Contact: Info@stansbooth.com | Website: stansbooth.com
 """
@@ -102,14 +102,42 @@ def get_relevant_context(query):
 
 def ask_gemini(query):
     try:
+        query_lower = query.lower().strip()
+
+        # Handle greetings with StansBooth intro
+        greetings = ['hi', 'hello', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening']
+        if query_lower in greetings or any(query_lower.startswith(g) for g in greetings):
+            return """Hello! Welcome to StansBooth - your AI-powered trading bot platform.
+
+We provide automated algorithmic trading for Forex, Crypto, and Stocks. Whether you're a beginner or professional trader, we make trading accessible and profitable.
+
+How can I help you today? You can ask me about:
+- Our trading services and features
+- Pricing plans (we have a FREE Starter Plan!)
+- How our AI trading bot works
+- Copy trading and signals
+
+Feel free to ask any questions about StansBooth!"""
+
         # Get relevant context from knowledge base
         context = get_relevant_context(query)
 
+        # Check if query is related to StansBooth
+        stansbooth_keywords = ['stansbooth', 'trading', 'bot', 'forex', 'crypto', 'stock', 'price', 'plan',
+                               'service', 'feature', 'signal', 'mt5', 'tradingview', 'algorithmic', 'copy trade',
+                               'portfolio', 'fund', 'invest', 'profit', 'market', 'alert']
+
+        is_stansbooth_related = any(keyword in query_lower for keyword in stansbooth_keywords) or len(context) > 0
+
+        # If no context found and not stansbooth related, reject
+        if not context and not is_stansbooth_related:
+            return "I can only answer questions about StansBooth services. Please ask about our trading bots, pricing plans, features, or contact us at Info@stansbooth.com"
+
         # Build the prompt with system instructions and context
         if context:
-            full_prompt = f"{SYSTEM_PROMPT}\n\n--- Relevant Knowledge Base Information ---\n{context}\n\n--- User Question ---\n{query}\n\nPlease answer based on the knowledge base information provided above. If the information isn't sufficient, you can supplement with general knowledge while staying true to StansBooth's services."
+            full_prompt = f"{SYSTEM_PROMPT}\n\n--- Relevant Knowledge Base Information ---\n{context}\n\n--- User Question ---\n{query}\n\nAnswer ONLY if this question is about StansBooth. If not related to StansBooth, respond with: 'I can only answer questions about StansBooth services.'"
         else:
-            full_prompt = f"{SYSTEM_PROMPT}\n\n--- User Question ---\n{query}\n\nPlease provide a helpful answer while maintaining StansBooth's professional and friendly tone."
+            full_prompt = f"{SYSTEM_PROMPT}\n\n--- User Question ---\n{query}\n\nAnswer ONLY if this question is about StansBooth trading services. Otherwise respond: 'I can only answer questions about StansBooth services.'"
 
         # Use the latest stable Gemini model with safety settings
         model_gemini = genai.GenerativeModel("gemini-2.5-flash")
@@ -150,7 +178,7 @@ def ask_gemini(query):
 def home():
     return render_template("index.html")
 
-@app.route("/get", methods=["POST"])
+@app.route("/chat", methods=["POST"])
 def chatbot_response():
     data = request.get_json()
     msg = data.get("msg", "").strip()
@@ -202,5 +230,13 @@ def clear_history():
 
 # ----------------- RUN -----------------
 if __name__ == "__main__":
-    # Use stat reloader to prevent monitoring site-packages
-    app.run(debug=True, host='127.0.0.1', port=5000, use_reloader=True, reloader_type='stat')
+    # Get port from environment variable for production deployment
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV', 'development') == 'development'
+
+    if debug:
+        # Development mode
+        app.run(debug=True, host='127.0.0.1', port=port, use_reloader=True, reloader_type='stat')
+    else:
+        # Production mode
+        app.run(host='0.0.0.0', port=port)

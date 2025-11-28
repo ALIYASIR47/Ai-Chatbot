@@ -51,7 +51,7 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
-        const response = await fetch("/get", {
+        const response = await fetch("/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ msg: message })
