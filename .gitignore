@@ -59,3 +59,8 @@ nul
 
 # Claude Code
 .claude/
+
+# Local docs (not needed in repo)
+DEPLOYMENT.md
+GITHUB_SETUP.md
+RUN_GUIDE.md
